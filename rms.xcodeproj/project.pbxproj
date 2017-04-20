@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		780C11CF1EA92EEA000648AC /* RideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780C11CE1EA92EEA000648AC /* RideTableViewCell.swift */; };
 		D3F3805A1EA1C0C500344D8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F380591EA1C0C500344D8C /* AppDelegate.swift */; };
 		D3F3805C1EA1C0C500344D8C /* RidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F3805B1EA1C0C500344D8C /* RidesViewController.swift */; };
 		D3F3805F1EA1C0C500344D8C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3F3805D1EA1C0C500344D8C /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		780C11CE1EA92EEA000648AC /* RideTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideTableViewCell.swift; sourceTree = "<group>"; };
 		D3F380561EA1C0C500344D8C /* rms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F380591EA1C0C500344D8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3F3805B1EA1C0C500344D8C /* RidesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RidesViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 			children = (
 				D3F380591EA1C0C500344D8C /* AppDelegate.swift */,
 				D3F3805B1EA1C0C500344D8C /* RidesViewController.swift */,
+				780C11CE1EA92EEA000648AC /* RideTableViewCell.swift */,
 				D3F3805D1EA1C0C500344D8C /* Main.storyboard */,
 				D3F380601EA1C0C500344D8C /* Assets.xcassets */,
 				D3F380621EA1C0C500344D8C /* LaunchScreen.storyboard */,
@@ -96,7 +99,6 @@
 				TargetAttributes = {
 					D3F380551EA1C0C500344D8C = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 9ZE33R343G;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -137,6 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				780C11CF1EA92EEA000648AC /* RideTableViewCell.swift in Sources */,
 				D3F3805C1EA1C0C500344D8C /* RidesViewController.swift in Sources */,
 				D3F3805A1EA1C0C500344D8C /* AppDelegate.swift in Sources */,
 			);
@@ -261,11 +264,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9ZE33R343G;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = rms/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lauraartiles.rms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -274,11 +279,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 9ZE33R343G;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = rms/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lauraartiles.rms;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -302,6 +309,7 @@
 				D3F3806A1EA1C0C500344D8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
