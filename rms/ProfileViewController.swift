@@ -8,30 +8,47 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+  @IBOutlet weak var profileTableView: UITableView!
   @IBOutlet weak var profileImageView: UIImageView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-      profileImageView.clipsToBounds = true
-        // Do any additional setup after loading the view.
-    }
+  let cellIdentifier = "settingsCell"
+  let settingsInfo = ["Name", "Route"]
+  let settingsDetail = ["Othan Peroni", "Sierra"]
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+    profileImageView.clipsToBounds = true
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+    // Set up table view
+    profileTableView.delegate = self
+    profileTableView.dataSource = self
+    self.view.addSubview(profileTableView)
 
-    /*
-    // MARK: - Navigation
+  }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
 
+
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return 1
+  }
+
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return settingsInfo.count
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    var cell = UITableViewCell(style: .value2, reuseIdentifier: nil)
+    cell =  tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+
+    // Configure cell
+    cell.textLabel?.text = settingsInfo[indexPath.row]
+    cell.detailTextLabel?.text = settingsDetail[indexPath.row]
+
+    return cell
+  }
 }

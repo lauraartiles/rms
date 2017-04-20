@@ -11,7 +11,8 @@ import UIKit
 class RideTableViewCell: UITableViewCell {
   @IBOutlet weak var rideTitle: UILabel!
   @IBOutlet weak var rideDistance: UILabel!
-
+  @IBOutlet weak var ridePaceLabel: UILabel!
+  
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code

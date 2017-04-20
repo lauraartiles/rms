@@ -14,15 +14,16 @@ class RidesViewController: UIViewController, UITableViewDataSource, UITableViewD
 
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var totalMilesLabel: UILabel!
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-    totalMilesLabel.text = "100.0"
 
+    // Set up table view
     tableView.delegate = self
     tableView.dataSource = self
-
     self.view.addSubview(self.tableView)
+
+    totalMilesLabel.text = "100.0"
   }
 
   override func didReceiveMemoryWarning() {
@@ -47,8 +48,28 @@ class RidesViewController: UIViewController, UITableViewDataSource, UITableViewD
     // Configure cell
     cell.rideTitle.text = ride
     cell.rideDistance.text = "30.0 miles"
+    cell.ridePaceLabel.text = "45'/ mile"
+    
 
     return cell
+  }
+
+  // MARK: - Navigation
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "RideSegue" {
+      guard let indexPath = tableView.indexPathForSelectedRow else {
+        return
+      }
+
+      // Get the destination view controller
+      let rideViewController = segue.destination as! RideViewController
+
+      tableView.deselectRow(at: indexPath, animated: false)
+
+      // Pass in the selected ride to the new view controller
+      let ride = rides[indexPath.row]
+      rideViewController.ride = ride
+    }
   }
 }
 

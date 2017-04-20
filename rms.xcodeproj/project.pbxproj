@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		780C11CF1EA92EEA000648AC /* RideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780C11CE1EA92EEA000648AC /* RideTableViewCell.swift */; };
+		788039C51EA9558400080761 /* RideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788039C41EA9558400080761 /* RideViewController.swift */; };
 		789215391EA94D97005122D5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 789215381EA94D97005122D5 /* ProfileViewController.swift */; };
 		D3F3805A1EA1C0C500344D8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F380591EA1C0C500344D8C /* AppDelegate.swift */; };
 		D3F3805C1EA1C0C500344D8C /* RidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F3805B1EA1C0C500344D8C /* RidesViewController.swift */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		780C11CE1EA92EEA000648AC /* RideTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideTableViewCell.swift; sourceTree = "<group>"; };
+		788039C41EA9558400080761 /* RideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RideViewController.swift; sourceTree = "<group>"; };
 		789215381EA94D97005122D5 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D3F380561EA1C0C500344D8C /* rms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rms.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3F380591EA1C0C500344D8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			children = (
 				D3F380591EA1C0C500344D8C /* AppDelegate.swift */,
 				D3F3805B1EA1C0C500344D8C /* RidesViewController.swift */,
+				788039C41EA9558400080761 /* RideViewController.swift */,
 				780C11CE1EA92EEA000648AC /* RideTableViewCell.swift */,
 				789215381EA94D97005122D5 /* ProfileViewController.swift */,
 				D3F3805D1EA1C0C500344D8C /* Main.storyboard */,
@@ -143,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				780C11CF1EA92EEA000648AC /* RideTableViewCell.swift in Sources */,
+				788039C51EA9558400080761 /* RideViewController.swift in Sources */,
 				D3F3805C1EA1C0C500344D8C /* RidesViewController.swift in Sources */,
 				789215391EA94D97005122D5 /* ProfileViewController.swift in Sources */,
 				D3F3805A1EA1C0C500344D8C /* AppDelegate.swift in Sources */,
