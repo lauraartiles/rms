@@ -12,10 +12,15 @@ class RidesViewController: UIViewController, UITableViewDataSource, UITableViewD
     let cellIdentifier = "RideCellIdentifier"
     var rides: [String] = []
     
+  @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         rides = ["ride1", "ride2", "ride3"]
         // Do any additional setup after loading the view, typically from a nib.
+      tableView.delegate = self
+      tableView.dataSource = self
+
+      self.view.addSubview(self.tableView)
     }
 
     override func didReceiveMemoryWarning() {
