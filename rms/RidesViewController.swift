@@ -10,13 +10,15 @@ import UIKit
 
 class RidesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   let cellIdentifier = "RideCellIdentifier"
-  var rides: [String] = []
+  var rides: [String] = ["Monday Morning Ride", "Saturday Morning Ride", "Thursday Afternoon Ride"]
 
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var totalMilesLabel: UILabel!
   override func viewDidLoad() {
     super.viewDidLoad()
-    rides = ["Monday Morning Ride", "Saturday Morning Ride", "Thursday Afternoon Ride"]
     // Do any additional setup after loading the view, typically from a nib.
+    totalMilesLabel.text = "100.0"
+
     tableView.delegate = self
     tableView.dataSource = self
 
@@ -42,7 +44,7 @@ class RidesViewController: UIViewController, UITableViewDataSource, UITableViewD
     // Fetch rides
     let ride = rides[indexPath.row]
 
-    // configure cell
+    // Configure cell
     cell.rideTitle.text = ride
     cell.rideDistance.text = "30.0 miles"
 
