@@ -90,6 +90,8 @@ class RidesViewController: UIViewController, UITableViewDataSource, UITableViewD
       // Pass in the selected ride to the new view controller
       let ride = rides[indexPath.row]
       rideViewController.ride = ride
+      rideViewController.rideDistance = rideDistance
+      rideViewController.rideSpeed = ridePace
     }
   }
 }
