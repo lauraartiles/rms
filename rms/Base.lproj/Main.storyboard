@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Othan Peroni-->
+        <!--Your Rides-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="RidesViewController" customModule="rms" customModuleProvider="target" sceneMemberID="viewController">
@@ -29,13 +29,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdb-Du-Zlu">
-                                <rect key="frame" x="147" y="206" width="82" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="151.5" y="206" width="73.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oGx-KZ-gkk">
-                                <rect key="frame" x="16" y="279" width="343" height="331"/>
+                                <rect key="frame" x="16" y="299" width="343" height="311"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RideCellIdentifier" id="QpX-0D-6y6" customClass="RideTableViewCell" customModule="rms" customModuleProvider="target">
@@ -80,11 +80,39 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4X-NC-1XQ">
+                                <rect key="frame" x="28" y="250" width="76" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total Rides" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfh-g2-1Qu">
+                                <rect key="frame" x="28" y="270" width="76" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Avg. Speed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MwO-xG-2rd">
+                                <rect key="frame" x="259" y="270" width="87" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmL-K7-892">
+                                <rect key="frame" x="259" y="249" width="87" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="y4J-YK-CJc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="1et-Ub-aGj"/>
-                            <constraint firstItem="oGx-KZ-gkk" firstAttribute="top" secondItem="bdb-Du-Zlu" secondAttribute="bottom" constant="52" id="DdG-Yf-czz"/>
+                            <constraint firstItem="oGx-KZ-gkk" firstAttribute="top" secondItem="bdb-Du-Zlu" secondAttribute="bottom" constant="75" id="DdG-Yf-czz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="oGx-KZ-gkk" secondAttribute="trailing" id="KVT-z1-X3R"/>
                             <constraint firstItem="bdb-Du-Zlu" firstAttribute="top" secondItem="y4J-YK-CJc" secondAttribute="bottom" constant="2" id="P1A-Df-mQ6"/>
                             <constraint firstItem="y4J-YK-CJc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="TOV-fb-5Ef"/>
@@ -93,7 +121,7 @@
                             <constraint firstItem="oGx-KZ-gkk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="sBV-5G-Puk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Othan Peroni" id="zBx-73-mXc">
+                    <navigationItem key="navigationItem" title="Your Rides" id="zBx-73-mXc">
                         <barButtonItem key="leftBarButtonItem" title="Profile" id="get-Ad-FiO">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -108,14 +136,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="overallAverageSpeedLabel" destination="bmL-K7-892" id="ANH-rp-twE"/>
                         <outlet property="tableView" destination="oGx-KZ-gkk" id="1cB-aw-Dp0"/>
                         <outlet property="totalMilesLabel" destination="y4J-YK-CJc" id="MBu-u1-L50"/>
+                        <outlet property="totalRidesLabel" destination="n4X-NC-1XQ" id="GZw-I4-sWz"/>
                         <segue destination="X53-s8-Pxd" kind="show" identifier="RideSegue" id="7Ki-5z-Smy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2384.8000000000002" y="174.96251874062969"/>
+            <point key="canvasLocation" x="2557.5999999999999" y="123.68815592203899"/>
         </scene>
         <!--New Ride-->
         <scene sceneID="NdN-6z-Xz0">
@@ -133,7 +163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ldx-KJ-EkN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3246" y="554"/>
+            <point key="canvasLocation" x="3337" y="558"/>
         </scene>
         <!--Ride View Controller-->
         <scene sceneID="zs0-JQ-Jkl">
@@ -163,7 +193,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tv9-Fr-fsq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4261.6000000000004" y="174.96251874062969"/>
+            <point key="canvasLocation" x="4265" y="124"/>
         </scene>
         <!--Profile-->
         <scene sceneID="OQa-nb-mcV">
@@ -232,7 +262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GdN-kW-lYa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3245.5999999999999" y="-238.83058470764618"/>
+            <point key="canvasLocation" x="3338" y="-240"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Umb-Y4-7ti">
@@ -282,7 +312,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G7x-ob-jVB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2386" y="969"/>
+            <point key="canvasLocation" x="1820" y="951"/>
         </scene>
         <!--Rides-->
         <scene sceneID="y3t-xh-5AT">
@@ -290,7 +320,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2vP-un-qJ9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Rides" id="Esm-VO-Pir"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="YVA-eZ-gTL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YVA-eZ-gTL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -306,7 +336,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4v-va-fNE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1737" y="124"/>
+            <point key="canvasLocation" x="1820" y="124"/>
         </scene>
     </scenes>
     <resources>

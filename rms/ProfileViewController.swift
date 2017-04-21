@@ -12,9 +12,11 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
   @IBOutlet weak var profileTableView: UITableView!
   @IBOutlet weak var profileImageView: UIImageView!
+
   let cellIdentifier = "settingsCell"
   let settingsInfo = ["Name", "Route"]
   let settingsDetail = ["Othan Peroni", "Sierra"]
+
   override func viewDidLoad() {
     super.viewDidLoad()
     profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
@@ -26,12 +28,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     self.view.addSubview(profileTableView)
 
   }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-
 
   func numberOfSections(in tableView: UITableView) -> Int {
     return 1

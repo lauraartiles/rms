@@ -9,11 +9,18 @@
 import UIKit
 
 class RidesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-  let cellIdentifier = "RideCellIdentifier"
-  var rides: [String] = ["Monday Morning Ride", "Saturday Morning Ride", "Thursday Afternoon Ride"]
 
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var totalMilesLabel: UILabel!
+  @IBOutlet weak var overallAverageSpeedLabel: UILabel!
+  @IBOutlet weak var totalRidesLabel: UILabel!
+
+  let cellIdentifier = "RideCellIdentifier"
+
+  /// TODO: Make a Ride object
+  var rides: [String] = []
+  var rideDistance:Double?
+  var ridePace:Double?
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -23,15 +30,22 @@ class RidesViewController: UIViewController, UITableViewDataSource, UITableViewD
     tableView.dataSource = self
     self.view.addSubview(self.tableView)
 
-    totalMilesLabel.text = "100.0"
+    getRiderRidesInfo()
+
   }
 
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  /// TODO: fetch rider info from DB
+  func getRiderRidesInfo() {
+    rides = ["Monday Morning Ride", "Saturday Morning Ride", "Thursday Afternoon Ride"]
+    totalMilesLabel.text = "100.0"
+    overallAverageSpeedLabel.text = "15 mph"
+    totalRidesLabel.text = "17"
+    rideDistance = 30.0
+    ridePace = 15
   }
 
   func numberOfSections(in tableView: UITableView) -> Int {
+    // TODO: set value to number of months
     return 1
   }
 
@@ -47,9 +61,14 @@ class RidesViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     // Configure cell
     cell.rideTitle.text = ride
-    cell.rideDistance.text = "30.0 miles"
-    cell.ridePaceLabel.text = "45'/ mile"
-    
+    if let rideDistance = rideDistance, let ridePace = ridePace {
+      cell.rideDistance.text = "\(rideDistance) miles"
+      cell.ridePaceLabel.text = "\(ridePace) mph"
+    }
+    else {
+      cell.rideDistance.text = " -- miles"
+      cell.ridePaceLabel.text = " -- mph"
+    }
 
     return cell
   }
@@ -62,7 +81,9 @@ class RidesViewController: UIViewController, UITableViewDataSource, UITableViewD
       }
 
       // Get the destination view controller
-      let rideViewController = segue.destination as! RideViewController
+      guard let rideViewController = segue.destination as? RideViewController else {
+        return
+      }
 
       tableView.deselectRow(at: indexPath, animated: false)
 

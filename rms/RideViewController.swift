@@ -9,30 +9,21 @@
 import UIKit
 
 class RideViewController: UIViewController {
-  var ride:String?
-
   @IBOutlet weak var rideTitleLabel: UILabel!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      rideTitleLabel.text = ride
 
-        // Do any additional setup after loading the view.
-    }
+  var ride:String?
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+    populateRideInfo()
+  }
 
-    /*
-    // MARK: - Navigation
+  private func populateRideInfo() {
+    rideTitleLabel.text = ride
+  }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  /// TODO: If a user edits ride info, update labels and push changes to DB
+  private func updateRideInfo() {
 
+  }
 }
