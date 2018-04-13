@@ -8,19 +8,18 @@
 
 import UIKit
 
-class RidesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RidesViewController: UIViewController {
 
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var totalMilesLabel: UILabel!
+  let totalMilesLbl = UILabel()
   @IBOutlet weak var overallAverageSpeedLabel: UILabel!
   @IBOutlet weak var totalRidesLabel: UILabel!
 
   let cellIdentifier = "RideCellIdentifier"
 
-  /// TODO: Make a Ride object
-  var rides: [String] = []
-  var rideDistance:Double?
-  var ridePace:Double?
+  // TODO: delete this once we fetch real ride info from DB
+  var rides = [Ride(for: "Monday"), Ride(for: "Saturday"), Ride(for: "Thursday")]
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,50 +29,26 @@ class RidesViewController: UIViewController, UITableViewDataSource, UITableViewD
     tableView.dataSource = self
     self.view.addSubview(self.tableView)
 
-    getRiderRidesInfo()
-
+    setUpFakeData()
   }
 
-  /// TODO: fetch rider info from DB
-  func getRiderRidesInfo() {
-    rides = ["Monday Morning Ride", "Saturday Morning Ride", "Thursday Afternoon Ride"]
-    totalMilesLabel.text = "100.0"
-    overallAverageSpeedLabel.text = "15 mph"
+  // TODO: delete this once we fetch rider info from DB
+  private func setUpFakeData() {
+    totalMilesLabel.text = "107.0"
+    overallAverageSpeedLabel.text = "15"
     totalRidesLabel.text = "17"
-    rideDistance = 30.0
-    ridePace = 15
   }
 
-  func numberOfSections(in tableView: UITableView) -> Int {
-    // TODO: set value to number of months
-    return 1
-  }
-
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return rides.count
-  }
-
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell =  tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RideTableViewCell
-
-    // Fetch rides
-    let ride = rides[indexPath.row]
-
-    // Configure cell
-    cell.rideTitle.text = ride
-    if let rideDistance = rideDistance, let ridePace = ridePace {
-      cell.rideDistance.text = "\(rideDistance) miles"
-      cell.ridePaceLabel.text = "\(ridePace) mph"
-    }
-    else {
-      cell.rideDistance.text = " -- miles"
-      cell.ridePaceLabel.text = " -- mph"
-    }
-
-    return cell
+  private func setUpLabels() {
+    totalMilesLbl.text = "100.0"
+    totalMilesLbl.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(totalMilesLbl)
+    totalMilesLbl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    totalMilesLbl.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 50.0).isActive = true
   }
 
   // MARK: - Navigation
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "RideSegue" {
       guard let indexPath = tableView.indexPathForSelectedRow else {
@@ -88,11 +63,36 @@ class RidesViewController: UIViewController, UITableViewDataSource, UITableViewD
       tableView.deselectRow(at: indexPath, animated: false)
 
       // Pass in the selected ride to the new view controller
-      let ride = rides[indexPath.row]
-      rideViewController.ride = ride
-      rideViewController.rideDistance = rideDistance
-      rideViewController.rideSpeed = ridePace
+      rideViewController.ride = rides[indexPath.row]
     }
+  }
+}
+
+extension RidesViewController: UITableViewDelegate { }
+
+extension RidesViewController: UITableViewDataSource {
+  func numberOfSections(in tableView: UITableView) -> Int {
+    // TODO: set value to number of months
+    return 1
+  }
+
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    // TODO: return number of rides for given month
+    return self.rides.count
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell =  tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RideTableViewCell
+
+    // Fetch rides
+    let ride = self.rides[indexPath.row]
+    
+    // Configure cell
+    cell.rideTitle.text = ride.description
+    cell.rideDistance.text = "\(ride.distance) miles"
+    cell.ridePaceLabel.text = "\(ride.pace) mph"
+
+    return cell
   }
 }
 

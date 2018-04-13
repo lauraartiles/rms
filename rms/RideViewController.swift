@@ -17,9 +17,7 @@ class RideViewController: UIViewController {
   @IBOutlet weak var rideElevationGainLabel: UILabel!
   @IBOutlet weak var rideCaloriesLabel: UILabel!
 
-  var ride:String?
-  var rideSpeed:Double?
-  var rideDistance:Double?
+  var ride: Ride?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -28,13 +26,13 @@ class RideViewController: UIViewController {
   }
 
   private func populateRideInfo() {
-    rideTitleLabel.text = ride
-    if let rideDistance = rideDistance {
+    rideTitleLabel.text = ride?.description
+    if let rideDistance = ride?.distance {
       rideDistanceLabel.text = "\(rideDistance) mi"
     } else {
       rideDistanceLabel.text = "-- mi"
     }
-    if let rideSpeed = rideSpeed {
+    if let rideSpeed = ride?.pace {
       rideAverageSpeedLabel.text = "\(rideSpeed) mph"
     }
     else {
