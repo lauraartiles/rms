@@ -9,10 +9,10 @@
 import UIKit
 
 class RideTableViewCell: UITableViewCell {
-  @IBOutlet weak var rideTitle: UILabel!
-  @IBOutlet weak var rideDistance: UILabel!
-  @IBOutlet weak var ridePaceLabel: UILabel!
-  
+  let rideTitle = UILabel()
+  let rideDistance = UILabel()
+  let ridePaceLabel = UILabel()
+
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code

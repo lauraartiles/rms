@@ -9,28 +9,38 @@
 import UIKit
 
 class RidesViewController: UIViewController {
+  let tableView = UITableView()
+  let totalMilesLabel = UILabel()
+  let overallAverageSpeedLabel = UILabel()
+  let totalRidesLabel = UILabel()
+  let totalMilesDescriptionLabel = UILabel()
 
-  @IBOutlet weak var tableView: UITableView!
-  @IBOutlet weak var totalMilesLabel: UILabel!
-  let totalMilesLbl = UILabel()
-  @IBOutlet weak var overallAverageSpeedLabel: UILabel!
-  @IBOutlet weak var totalRidesLabel: UILabel!
-
-  let cellIdentifier = "RideCellIdentifier"
+  let rideCellIdentifier = "RideCellIdentifier"
 
   // TODO: delete this once we fetch real ride info from DB
   var rides = [Ride(for: "Monday"), Ride(for: "Saturday"), Ride(for: "Thursday")]
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
-    // Set up table view
-    tableView.delegate = self
-    tableView.dataSource = self
-    self.view.addSubview(self.tableView)
-
+    view.backgroundColor = .white
+    setUpTableView()
+    setUpLabels()
     setUpFakeData()
   }
+
+    private func setUpTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200.0),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor)
+        ])
+        tableView.register(RideTableViewCell.self, forCellReuseIdentifier: rideCellIdentifier)
+    }
 
   // TODO: delete this once we fetch rider info from DB
   private func setUpFakeData() {
@@ -40,16 +50,26 @@ class RidesViewController: UIViewController {
   }
 
   private func setUpLabels() {
-    totalMilesLbl.text = "100.0"
-    totalMilesLbl.translatesAutoresizingMaskIntoConstraints = false
-    view.addSubview(totalMilesLbl)
-    totalMilesLbl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    totalMilesLbl.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 50.0).isActive = true
+    totalMilesLabel.font = .systemFont(ofSize: 75.0)
+    totalMilesLabel.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(totalMilesLabel)
+
+    totalMilesDescriptionLabel.text = "Total Miles"
+    totalMilesDescriptionLabel.font = .systemFont(ofSize: 15.0)
+    totalMilesDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(totalMilesDescriptionLabel)
+
+    NSLayoutConstraint.activate([
+      totalMilesLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      totalMilesLabel.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 50.0),
+      totalMilesDescriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      totalMilesDescriptionLabel.topAnchor.constraint(equalTo: totalMilesLabel.bottomAnchor, constant: 6.0)
+    ])
   }
 
   // MARK: - Navigation
 
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // delete once everything is converted to code and storyboard is removed
     if segue.identifier == "RideSegue" {
       guard let indexPath = tableView.indexPathForSelectedRow else {
         return
@@ -68,7 +88,16 @@ class RidesViewController: UIViewController {
   }
 }
 
-extension RidesViewController: UITableViewDelegate { }
+extension RidesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65.0
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let rideViewController = RideViewController()
+        navigationController?.pushViewController(rideViewController, animated: true) // fix me!
+    }
+}
 
 extension RidesViewController: UITableViewDataSource {
   func numberOfSections(in tableView: UITableView) -> Int {
@@ -78,21 +107,22 @@ extension RidesViewController: UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     // TODO: return number of rides for given month
-    return self.rides.count
+    return rides.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell =  tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RideTableViewCell
+    let cell =  tableView.dequeueReusableCell(withIdentifier: rideCellIdentifier, for: indexPath)
+    guard let rideCell = cell as? RideTableViewCell else { return cell }
 
     // Fetch rides
-    let ride = self.rides[indexPath.row]
+    let ride = rides[indexPath.row]
     
     // Configure cell
-    cell.rideTitle.text = ride.description
-    cell.rideDistance.text = "\(ride.distance) miles"
-    cell.ridePaceLabel.text = "\(ride.pace) mph"
+    rideCell.rideTitle.text = ride.description
+    rideCell.rideDistance.text = "\(ride.distance) miles"
+    rideCell.ridePaceLabel.text = "\(ride.pace) mph"
 
-    return cell
+    return rideCell
   }
 }
 
