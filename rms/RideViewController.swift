@@ -10,19 +10,37 @@ import UIKit
 
 class RideViewController: UIViewController {
   // TODO: Make these a stack view
-  @IBOutlet weak var rideTitleLabel: UILabel!
-  @IBOutlet weak var rideDistanceLabel: UILabel!
-  @IBOutlet weak var rideAverageSpeedLabel: UILabel!
-  @IBOutlet weak var rideDurationLabel: UILabel!
-  @IBOutlet weak var rideElevationGainLabel: UILabel!
-  @IBOutlet weak var rideCaloriesLabel: UILabel!
+  private var rideTitleLabel = UILabel()
+  private var rideDistanceLabel = UILabel()
+  private var rideAverageSpeedLabel = UILabel()
+  private var rideDurationLabel = UILabel()
+  private var rideElevationGainLabel = UILabel()
+  private var rideCaloriesLabel = UILabel()
 
   var ride: Ride?
   
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    setUpSubviews()
     populateRideInfo()
+  }
+
+  private func setUpSubviews() {
+    let subviews = [rideTitleLabel, rideDistanceLabel,
+                    rideAverageSpeedLabel, rideDurationLabel,
+                    rideElevationGainLabel, rideCaloriesLabel]
+    subviews.forEach { subview in
+      subview.translatesAutoresizingMaskIntoConstraints = false
+      view.addSubview(subview)
+    }
+
+    NSLayoutConstraint.activate([
+      rideTitleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20.0),
+      rideTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      rideDistanceLabel.topAnchor.constraint(equalTo: rideTitleLabel.bottomAnchor, constant: 75.0),
+      rideDistanceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+      ])
   }
 
   private func populateRideInfo() {

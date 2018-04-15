@@ -9,16 +9,14 @@
 import UIKit
 
 class RidesViewController: UIViewController {
-  let tableView = UITableView()
-  let totalMilesLabel = UILabel()
-  let overallAverageSpeedLabel = UILabel()
-  let totalRidesLabel = UILabel()
-  let totalMilesDescriptionLabel = UILabel()
-
-  let rideCellIdentifier = "RideCellIdentifier"
-
+  private let tableView = UITableView()
+  private let totalMilesLabel = UILabel()
+  private let overallAverageSpeedLabel = UILabel()
+  private let totalRidesLabel = UILabel()
+  private let totalMilesDescriptionLabel = UILabel()
+  fileprivate let rideCellIdentifier = "RideCellIdentifier"
   // TODO: delete this once we fetch real ride info from DB
-  var rides = [Ride(for: "Monday"), Ride(for: "Saturday"), Ride(for: "Thursday")]
+  fileprivate var rides = [Ride(for: "Monday"), Ride(for: "Saturday"), Ride(for: "Thursday")]
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -34,7 +32,7 @@ class RidesViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200.0),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 250.0),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor)
@@ -66,37 +64,20 @@ class RidesViewController: UIViewController {
       totalMilesDescriptionLabel.topAnchor.constraint(equalTo: totalMilesLabel.bottomAnchor, constant: 6.0)
     ])
   }
-
-  // MARK: - Navigation
-
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // delete once everything is converted to code and storyboard is removed
-    if segue.identifier == "RideSegue" {
-      guard let indexPath = tableView.indexPathForSelectedRow else {
-        return
-      }
-
-      // Get the destination view controller
-      guard let rideViewController = segue.destination as? RideViewController else {
-        return
-      }
-
-      tableView.deselectRow(at: indexPath, animated: false)
-
-      // Pass in the selected ride to the new view controller
-      rideViewController.ride = rides[indexPath.row]
-    }
-  }
 }
 
 extension RidesViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 65.0
-    }
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 65.0
+  }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let rideViewController = RideViewController()
-        navigationController?.pushViewController(rideViewController, animated: true) // fix me!
-    }
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let rideViewController = RideViewController()
+    // Pass in the selected ride to the new view controller
+    rideViewController.ride = rides[indexPath.row]
+    navigationController?.pushViewController(rideViewController, animated: true)
+    tableView.deselectRow(at: indexPath, animated: false)
+  }
 }
 
 extension RidesViewController: UITableViewDataSource {

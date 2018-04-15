@@ -20,14 +20,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     guard let window = window else {
         return false
     }
-    let rootViewController = UITabBarController()
-    rootViewController.tabBar.itemPositioning = .fill
+
     let ridesViewController = RidesViewController()
-    ridesViewController.tabBarItem.title = "Rides"
+    let firstTab = UINavigationController(rootViewController: ridesViewController)
+    firstTab.tabBarItem.title = "Rides"
+
     let leaderboardViewController = LeaderboardViewController()
-    leaderboardViewController.tabBarItem.title = "Leaderboard"
-    rootViewController.viewControllers = [ridesViewController, leaderboardViewController]
-    window.rootViewController = rootViewController
+    let secondTab = UINavigationController(rootViewController: leaderboardViewController)
+    secondTab.tabBarItem.title = "Leaderboard"
+
+    let tabBarController = UITabBarController()
+    tabBarController.tabBar.itemPositioning = .fill
+    tabBarController.viewControllers = [firstTab, secondTab]
+    window.rootViewController = tabBarController
+    window.rootViewController?.view.backgroundColor = .white
     window.makeKeyAndVisible()
 
 

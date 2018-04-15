@@ -12,7 +12,7 @@ struct Ride {
   let description: String?
   let distance: Double
   let duration: String
-  let pace: String
+  let pace: Double
 }
 
 // MARK: Fake data
@@ -21,7 +21,7 @@ extension Ride {
   init(for day: String) {
     description = "\(day) Morning Ride"
     distance = 30.0
-    pace = "15 mph"
+    pace = 15
     duration = "2:00:00"
   }
 }
@@ -41,6 +41,6 @@ extension Ride: Decodable {
     description = try container.decodeIfPresent(String.self, forKey: .description)
     distance = try container.decode(Double.self, forKey: .distance)
     duration = try container.decode(String.self, forKey: .duration)
-    pace = try container.decode(String.self, forKey: .pace)
+    pace = try container.decode(Double.self, forKey: .pace)
   }
 }
