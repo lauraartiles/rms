@@ -44,7 +44,15 @@ class RidesViewController: UIViewController {
   }
 
   private func setUpNavigationBarItems() {
-    navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Image-1"), style: .plain, target: self, action: #selector(profileButtonTapped))
+    let button = UIButton()
+    button.setImage(#imageLiteral(resourceName: "Image-1"), for: .normal)
+    button.addTarget(self, action: #selector(profileButtonTapped), for: .touchUpInside)
+
+    NSLayoutConstraint.activate([
+      button.widthAnchor.constraint(equalToConstant: 23),
+      button.heightAnchor.constraint(equalToConstant: 23)
+    ])
+    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
   }
 
   @objc private func profileButtonTapped() {
