@@ -10,8 +10,8 @@ import UIKit
 
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-  @IBOutlet weak var profileTableView: UITableView!
-  @IBOutlet weak var profileImageView: UIImageView!
+  let profileTableView = UITableView()
+  let profileImageView = UIImageView()
 
   let cellIdentifier = "settingsCell"
   let settingsInfo = ["Name", "Route"]
@@ -19,14 +19,24 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
-    profileImageView.clipsToBounds = true
+    view.backgroundColor = .white
+
 
     // Set up table view
     profileTableView.delegate = self
     profileTableView.dataSource = self
-    self.view.addSubview(profileTableView)
+    view.addSubview(profileTableView)
+  }
 
+  private func setUpImageView() {
+    profileImageView.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(profileImageView)
+    NSLayoutConstraint.activate([
+      profileImageView.centerXAnchor.constraint(equalTo: view.rightAnchor),
+      profileImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 25.0)
+      ])
+    profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+    profileImageView.clipsToBounds = true
   }
 
   func numberOfSections(in tableView: UITableView) -> Int {

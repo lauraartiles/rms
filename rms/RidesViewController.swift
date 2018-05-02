@@ -23,24 +23,34 @@ class RidesViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
-    setUpTableView()
     setUpLabels()
+    setUpTableView()
     setUpFakeData()
+    setUpNavigationBarItems()
   }
 
-    private func setUpTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(tableView)
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 200.0),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor)
-        ])
-        tableView.register(RideTableViewCell.self, forCellReuseIdentifier: rideCellIdentifier)
-    }
+  private func setUpTableView() {
+    tableView.delegate = self
+    tableView.dataSource = self
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(tableView)
+    NSLayoutConstraint.activate([
+      tableView.topAnchor.constraint(equalTo: totalMilesLabel.bottomAnchor, constant: 100.0),
+      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+      tableView.leftAnchor.constraint(equalTo: view.leftAnchor)
+      ])
+    tableView.register(RideTableViewCell.self, forCellReuseIdentifier: rideCellIdentifier)
+  }
+
+  private func setUpNavigationBarItems() {
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Image-1"), style: .plain, target: self, action: #selector(profileButtonTapped))
+  }
+
+  @objc private func profileButtonTapped() {
+    let profileViewController = ProfileViewController()
+    navigationController?.pushViewController(profileViewController, animated: true)
+  }
 
   // TODO: delete this once we fetch rider info from DB
   private func setUpFakeData() {
@@ -66,26 +76,6 @@ class RidesViewController: UIViewController {
       totalMilesDescriptionLabel.topAnchor.constraint(equalTo: totalMilesLabel.bottomAnchor, constant: 6.0)
     ])
   }
-
-  // MARK: - Navigation
-
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // delete once everything is converted to code and storyboard is removed
-    if segue.identifier == "RideSegue" {
-      guard let indexPath = tableView.indexPathForSelectedRow else {
-        return
-      }
-
-      // Get the destination view controller
-      guard let rideViewController = segue.destination as? RideViewController else {
-        return
-      }
-
-      tableView.deselectRow(at: indexPath, animated: false)
-
-      // Pass in the selected ride to the new view controller
-      rideViewController.ride = rides[indexPath.row]
-    }
-  }
 }
 
 extension RidesViewController: UITableViewDelegate {
@@ -95,7 +85,8 @@ extension RidesViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let rideViewController = RideViewController()
-        navigationController?.pushViewController(rideViewController, animated: true) // fix me!
+        tableView.deselectRow(at: indexPath, animated: false)
+        navigationController?.pushViewController(rideViewController, animated: true)
     }
 }
 
