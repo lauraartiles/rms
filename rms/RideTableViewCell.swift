@@ -15,31 +15,27 @@ class RideTableViewCell: UITableViewCell {
 
   override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
+    setUpCell()
+  }
 
-    let subviews = [rideTitle, rideDistance, ridePaceLabel]
-    subviews.forEach { subview in
-      subview.translatesAutoresizingMaskIntoConstraints = false
-      addSubview(subview)
-    }
-
+  private func setUpCell() {
+    rideTitle.translatesAutoresizingMaskIntoConstraints = false
+    ridePaceLabel.translatesAutoresizingMaskIntoConstraints = false
+    rideDistance.translatesAutoresizingMaskIntoConstraints = false
+    addSubview(rideTitle)
+    addSubview(rideDistance)
+    addSubview(ridePaceLabel)
     NSLayoutConstraint.activate([
-      rideTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.0),
-      rideTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20.0),
-      rideDistance.topAnchor.constraint(equalTo: rideTitle.bottomAnchor, constant: 6.0),
-      rideDistance.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20.0),
-      ridePaceLabel.topAnchor.constraint(equalTo: rideTitle.bottomAnchor, constant: 6.0),
-      ridePaceLabel.leftAnchor.constraint(equalTo: rideDistance.rightAnchor, constant: 4.0)
+      rideTitle.topAnchor.constraint(equalTo: topAnchor, constant: 5.0),
+      rideTitle.leftAnchor.constraint(equalTo: leftAnchor, constant: 30.0),
+      rideDistance.topAnchor.constraint(equalTo: rideTitle.bottomAnchor, constant: 5.0),
+      rideDistance.leftAnchor.constraint(equalTo: leftAnchor, constant: 30.0),
+      ridePaceLabel.topAnchor.constraint(equalTo: rideDistance.topAnchor),
+      ridePaceLabel.leftAnchor.constraint(equalTo: rideDistance.rightAnchor, constant: 15.0)
       ])
   }
 
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
-
-    // Configure the view for the selected state
-  }
-
 }

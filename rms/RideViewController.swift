@@ -10,17 +10,22 @@ import UIKit
 
 class RideViewController: UIViewController {
   // TODO: Make these a stack view
-  private var rideTitleLabel = UILabel()
-  private var rideDistanceLabel = UILabel()
-  private var rideAverageSpeedLabel = UILabel()
-  private var rideDurationLabel = UILabel()
-  private var rideElevationGainLabel = UILabel()
-  private var rideCaloriesLabel = UILabel()
+  let rideTitleLabel = UILabel()
+  let rideDistanceLabel = UILabel()
+  let rideAverageSpeedLabel = UILabel()
+  let rideDurationLabel = UILabel()
+  let rideElevationGainLabel = UILabel()
+  let rideCaloriesLabel = UILabel()
 
-  var ride: Ride?
+  var ride: Ride? {
+    didSet {
+      populateRideInfo()
+    }
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = .white
 
     setUpSubviews()
     populateRideInfo()

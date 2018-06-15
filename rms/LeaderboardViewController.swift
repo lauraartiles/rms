@@ -17,6 +17,7 @@ class LeaderboardViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.backgroundColor = .white
 
     // Set up table view
     tableView.delegate = self

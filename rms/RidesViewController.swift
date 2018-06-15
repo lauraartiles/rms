@@ -21,24 +21,42 @@ class RidesViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
-    setUpTableView()
     setUpLabels()
+    setUpTableView()
     setUpFakeData()
+    setUpNavigationBarItems()
   }
 
-    private func setUpTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(tableView)
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 250.0),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor)
-        ])
-        tableView.register(RideTableViewCell.self, forCellReuseIdentifier: rideCellIdentifier)
-    }
+  private func setUpTableView() {
+    tableView.delegate = self
+    tableView.dataSource = self
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(tableView)
+    NSLayoutConstraint.activate([
+      tableView.topAnchor.constraint(equalTo: totalMilesLabel.bottomAnchor, constant: 100.0),
+      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+      tableView.leftAnchor.constraint(equalTo: view.leftAnchor)
+      ])
+    tableView.register(RideTableViewCell.self, forCellReuseIdentifier: rideCellIdentifier)
+  }
+
+  private func setUpNavigationBarItems() {
+    let button = UIButton()
+    button.setImage(#imageLiteral(resourceName: "Image-1"), for: .normal)
+    button.addTarget(self, action: #selector(profileButtonTapped), for: .touchUpInside)
+
+    NSLayoutConstraint.activate([
+      button.widthAnchor.constraint(equalToConstant: 23),
+      button.heightAnchor.constraint(equalToConstant: 23)
+    ])
+    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+  }
+
+  @objc private func profileButtonTapped() {
+    let profileViewController = ProfileViewController()
+    navigationController?.pushViewController(profileViewController, animated: true)
+  }
 
   // TODO: delete this once we fetch rider info from DB
   private func setUpFakeData() {
